@@ -46,6 +46,21 @@ angular.module('starter.controllers', [])
   
   Number.prototype.toRad = function() { return this * (Math.PI / 180); };
   
+  $scope.alertDismissed = function() {
+    // do something
+  }
+
+  // Show a custom alertDismissed
+  //
+  $scope.showAlert = function() {
+    navigator.notification.alert(
+      'You are the winner!',  // message
+      $scope.alertDismissed,         // callback
+      'Game Over',            // title
+      'Done'                  // buttonName
+    );
+  }
+    
   $scope.getTargetPosition = function() {
     $scope.showAlert();
     $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
@@ -100,21 +115,6 @@ angular.module('starter.controllers', [])
     }else{
       alert("not yet");
       //navigator.notification.vibrate(2500);
-    }
-    
-    $scope.alertDismissed = function() {
-            // do something
-        }
-
-    // Show a custom alertDismissed
-    //
-    $scope.showAlert = function() {
-        navigator.notification.alert(
-            'You are the winner!',  // message
-            $scope.alertDismissed,         // callback
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
     }
   }
 })
