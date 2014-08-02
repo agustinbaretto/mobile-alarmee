@@ -7,8 +7,13 @@
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Direccion" id="targetAddress" name="targetAddress" ng-model="targetAddress" required>
+        <input type="text" placeholder="Direccion" ng-model="alarmData.targetAddress" required>
       </label>
+      <div class="item range range-positive">
+        <label>Radio de kilometros: {{alarmData.ratio}}</label>
+        <input type="range" min="0" max="10" value="5" name="ratio" ng-model="alarmData.ratio">
+      </div>
+      </div>
       <button  ng-click="getTargetPosition()" class="button button-full button-positive">
         Ubicar destino
       </button>

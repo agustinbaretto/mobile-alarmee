@@ -33,7 +33,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AlarmsCtrl', ['$scope', function($scope) {
+.controller('AlarmsCtrl', function($scope) {
+  $scope.alarmData = {};
   $scope.alarms = [];
   $scope.alerts = [];
   $scope.geocoder = new google.maps.Geocoder();
@@ -41,13 +42,12 @@ angular.module('starter.controllers', [])
   $scope.currentLongitude = "";
   $scope.targetLatitude = "";
   $scope.targetLongitude = "";
-  $scope.targetAddress = "";
   $scope.watchID = "";
   
   Number.prototype.toRad = function() { return this * (Math.PI / 180); };
   
   $scope.getTargetPosition = function() {
-    $scope.geocoder.geocode( {'address': $scope.targetAddress}, function(results, status) {
+    $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {	
         $scope.targetLatitude = results[0].geometry.location.lat();        
         $scope.targetLongitude = results[0].geometry.location.lng();
@@ -96,7 +96,7 @@ angular.module('starter.controllers', [])
       alert("not yet");
     }
   }
-}])
+})
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
