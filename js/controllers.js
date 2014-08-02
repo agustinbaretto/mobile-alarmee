@@ -91,9 +91,11 @@ angular.module('starter.controllers', [])
     var distance = R * c;
     
     if(distance < 2){
-      alert("cercaaaa!");}
-    else{
+      alert("cercaaaa!");
+      navigator.notification.vibrate(2500);
+    }else{
       alert("not yet");
+      navigator.notification.vibrate(2500);
     }
   }
 })
