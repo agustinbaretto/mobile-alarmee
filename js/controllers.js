@@ -47,6 +47,7 @@ angular.module('starter.controllers', [])
   Number.prototype.toRad = function() { return this * (Math.PI / 180); };
   
   $scope.getTargetPosition = function() {
+    navigator.notification.beep(2);
     $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {	
         $scope.targetLatitude = results[0].geometry.location.lat();        
@@ -93,6 +94,7 @@ angular.module('starter.controllers', [])
     if(distance < 2){
       alert("cercaaaa!");
       navigator.notification.vibrate(2500);
+      navigator.notification.beep(2);
     }else{
       alert("not yet");
       navigator.notification.vibrate(2500);

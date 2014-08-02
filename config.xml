@@ -13,6 +13,9 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
+  <gap:plugin name="org.apache.cordova.vibration" version="0.3.7" />
+  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
