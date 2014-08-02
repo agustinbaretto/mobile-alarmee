@@ -51,6 +51,8 @@ angular.module('starter.controllers', [])
       if (status == google.maps.GeocoderStatus.OK) {	
         $scope.targetLatitude = results[0].geometry.location.lat();        
         $scope.targetLongitude = results[0].geometry.location.lng();
+        
+        $scope.getCurrentPosition();
       } else {
    	   alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -69,7 +71,7 @@ angular.module('starter.controllers', [])
   }
     
   $scope.getCurrentPosition = function() {
-    $scope.watchID = navigator.geolocation.watchPosition($scope.onSuccess, $scope.onError, { timeout: 30000 });
+    $scope.watchID = navigator.geolocation.watchPosition($scope.onSuccess, $scope.onError, { timeout: 10000 });
   }
     
   $scope.getDistance = function()
@@ -90,7 +92,7 @@ angular.module('starter.controllers', [])
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var distance = R * c;
     
-    if(distance < 2){
+    if(distance < $scope.alarmData.ratio){
       alert("cercaaaa!");
       //navigator.notification.vibrate(2500);
       //navigator.notification.beep(2);
