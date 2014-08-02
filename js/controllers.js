@@ -72,7 +72,7 @@ angular.module('starter.controllers', [])
   }
     
   $scope.getCurrentPosition = function() {
-    $scope.watchID = navigator.geolocation.watchPosition($scope.onSuccess, $scope.onError, { timeout: 10000 });
+    $scope.watchID = navigator.geolocation.watchPosition($scope.onSuccess, $scope.onError, { timeout: 30000 });
   }
     
   $scope.getDistance = function()
