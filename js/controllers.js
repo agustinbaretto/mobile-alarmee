@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AlarmsCtrl', function($scope) {
+.controller('AlarmsCtrl', function($scope, $ionicPlatform) {
   $scope.alarmData = {};
   $scope.alarms = [];
   $scope.alerts = [];
@@ -50,19 +50,7 @@ angular.module('starter.controllers', [])
     // do something
   }
 
-  // Show a custom alertDismissed
-  //
-  $scope.showAlert = function() {
-    navigator.notification.alert(
-      'You are the winner!',  // message
-      $scope.alertDismissed,         // callback
-      'Game Over',            // title
-      'Done'                  // buttonName
-    );
-  }
-    
   $scope.getTargetPosition = function() {
-    $scope.showAlert();
     $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {	
         $scope.targetLatitude = results[0].geometry.location.lat();        
@@ -117,6 +105,15 @@ angular.module('starter.controllers', [])
       //navigator.notification.vibrate(2500);
     }
   }
+  
+  $ionicPlatform.ready(function() {
+    navigator.notification.alert(
+      'You are the winner!',  // message
+      $scope.alertDismissed,         // callback
+      'Game Over',            // title
+      'Done'                  // buttonName
+    );
+  });
 })
 
 .controller('PlaylistsCtrl', function($scope) {
