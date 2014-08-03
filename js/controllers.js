@@ -35,6 +35,7 @@ angular.module('starter.controllers', [])
 
 .controller('AlarmsCtrl', function($scope, $ionicPlatform) {
   $scope.alarmData = {};
+  $scope.alarmData.ratio = 5;
   $scope.alarms = [];
   $scope.alerts = [];
   $scope.geocoder = new google.maps.Geocoder();
@@ -60,7 +61,7 @@ angular.module('starter.controllers', [])
         } else {
      	   alert('Geocode was not successful for the following reason: ' + status);
         }
-      };
+      });
     });
   }
     
