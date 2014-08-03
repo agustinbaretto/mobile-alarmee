@@ -7,8 +7,9 @@ function onDeviceReady() {
 }
 
 // Handle the back button
-function onBackKeyDown() {
-  alert("test");
+function onBackKeyDown(e) {
+  e.preventDefault();
+  return false;
 }
 
 // Ionic Starter App
