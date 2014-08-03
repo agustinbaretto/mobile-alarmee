@@ -9,7 +9,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     //https://github.com/ftlabs/fastclick
-    FastClick.attach(document.body);
+    //FastClick.attach(document.body);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
