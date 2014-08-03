@@ -45,12 +45,6 @@ angular.module('starter.controllers', [])
   $scope.targetLongitude = "";
   $scope.watchID = "";
   
-  $scope.onBackKeyDown = function() {
-    alert("backbone button");
-  }
-  
-  document.addEventListener("backbutton", $scope.onBackKeyDown, false);
-  
   Number.prototype.toRad = function() { return this * (Math.PI / 180); };
   
   $scope.alertDismissed = function() {
