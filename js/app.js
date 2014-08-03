@@ -8,8 +8,8 @@ function onDeviceReady() {
 
 // Handle the back button
 function onBackKeyDown(e) {
+  alert("test2");
   e.preventDefault();
-  return false;
 }
 
 // Ionic Starter App
