@@ -3,7 +3,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady() {
     // Register the event listener
-    document.addEventListener("backbutton", onBackKeyDown, false);
+    document.addEventListener("backbutton", onBackKeyDown, true);
 }
 
 // Handle the back button
