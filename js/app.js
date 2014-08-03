@@ -4,14 +4,14 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     // Register the event listener
     document.addEventListener("backbutton", onBackKeyDown, true);
-    //navigator.app.overrideBackbutton(true);
-    
+    navigator.app.overrideBackbutton(true);
+    //BackButton.override();
 }
 
 // Handle the back button
 function onBackKeyDown(e) {
-  alert("test2");
   e.preventDefault();
+  alert("test3");
 }
 
 // Ionic Starter App
