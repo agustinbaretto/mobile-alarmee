@@ -9,8 +9,8 @@ function onDeviceReady() {
 
 // Handle the back button
 function onBackKeyDown(e) {
-  //e.stopPropagation();
-  //e.preventDefault();
+  e.stopPropagation();
+  e.preventDefault();
   alert("test4");
 }
 
