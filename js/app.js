@@ -4,6 +4,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     // Register the event listener
     document.addEventListener("backbutton", onBackKeyDown, true);
+    //navigator.app.overrideBackbutton(true);
+    
 }
 
 // Handle the back button
