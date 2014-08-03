@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.scroll-content {
+    background: url(http://photos-a.ak.instagram.com/hphotos-ak-xaf1/10576173_830434550300144_1723051350_n.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}

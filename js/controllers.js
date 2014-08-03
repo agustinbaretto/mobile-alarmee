@@ -52,14 +52,15 @@ angular.module('starter.controllers', [])
 
   $scope.getTargetPosition = function() {
     $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {	
-        $scope.targetLatitude = results[0].geometry.location.lat();        
-        $scope.targetLongitude = results[0].geometry.location.lng();
-        
-        $scope.getCurrentPosition();
-      } else {
-   	   alert('Geocode was not successful for the following reason: ' + status);
-      }
+      $scope.$apply(function(){
+        if (status == google.maps.GeocoderStatus.OK) {	
+          $scope.targetLatitude = results[0].geometry.location.lat();        
+          $scope.targetLongitude = results[0].geometry.location.lng();
+          $scope.getCurrentPosition();
+        } else {
+     	   alert('Geocode was not successful for the following reason: ' + status);
+        }
+      };
     });
   }
     
