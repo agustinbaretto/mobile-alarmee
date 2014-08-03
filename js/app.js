@@ -3,15 +3,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady() {
     navigator.device.overrideBackButton();
+    document.addEventListener("backKeyDown", onBackKeyDown, false);
     // Register the event listener
-    document.addEventListener("backbutton", onBackKeyDown, true);
+    //document.addEventListener("backbutton", onBackKeyDown, true);
 }
 
 // Handle the back button
 function onBackKeyDown(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  alert("test4");
+  //e.stopPropagation();
+  //e.preventDefault();
+  alert("test5");
 }
 
 // Ionic Starter App
