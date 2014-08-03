@@ -106,14 +106,16 @@ angular.module('starter.controllers', [])
     }
   }
   
-  $ionicPlatform.ready(function() {
-    navigator.notification.alert(
-      'You are the winner!',  // message
-      $scope.alertDismissed,         // callback
-      'Game Over',            // title
-      'Done'                  // buttonName
-    );
-  });
+  if (navigator.notification) { // Override default HTML alert with native dialog
+    window.alert = function (message) {
+      navigator.notification.alert(
+          message,    // message
+          null,       // callback
+          "Workshop", // title
+          'OK'        // buttonName
+      );
+    };
+  }
 })
 
 .controller('PlaylistsCtrl', function($scope) {
