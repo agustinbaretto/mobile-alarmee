@@ -71,11 +71,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
     .state('app.single', {
-      url: "/playlists/:playlistId",
+      url: "/alarms/:alarmId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
+          templateUrl: "templates/alarm.html",
+          controller: 'AlarmCtrl'
         }
       }
     });

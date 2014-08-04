@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AlarmsCtrl', function($scope, $ionicPlatform) {
+.controller('AlarmsCtrl', function($scope, $ionicPlatform, $stateParams) {
   $scope.alarmData = {};
   $scope.alarmData.ratio = 5;
   $scope.alarms = [];
@@ -125,7 +125,4 @@ angular.module('starter.controllers', [])
     { title: 'Trabajo', id: 1 },
     { title: 'Tren', id: 2 }
   ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 })
