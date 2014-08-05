@@ -33,30 +33,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AlarmsCtrl', function($scope, $ionicPlatform, $stateParams) {
-  $scope.alarmData = {};
-  $scope.alarmData.ratio = 5;
-  $scope.alarms = [];
-  $scope.alerts = [];
+.controller('AlarmsCtrl', function($scope, $ionicPlatform, $stateParams, alarmListService) {
+  $scope.formData = {};
+  $scope.formData.ratio = 5;
+  $scope.alarms = alarmListService.getAlarmList();
   $scope.geocoder = new google.maps.Geocoder();
   $scope.currentLatitude = "";
   $scope.currentLongitude = "";
   $scope.targetLatitude = "";
   $scope.targetLongitude = "";
   $scope.watchID = "";
-  
+
   Number.prototype.toRad = function() { return this * (Math.PI / 180); };
-  
-  $scope.alertDismissed = function() {
-    // do something
-  }
 
   $scope.getTargetPosition = function() {
-    $scope.geocoder.geocode( {'address': $scope.alarmData.targetAddress}, function(results, status) {
+    $scope.geocoder.geocode( {'address': $scope.formData.targetAddress}, function(results, status) {
       $scope.$apply(function(){
         if (status == google.maps.GeocoderStatus.OK) {	
           $scope.targetLatitude = results[0].geometry.location.lat();        
           $scope.targetLongitude = results[0].geometry.location.lng();
+          $scope.formData.targetAddress = results[0].formatted_address.substring(0, 100);
           $scope.getCurrentPosition();
         } else {
      	   alert('Geocode was not successful for the following reason: ' + status);
@@ -66,10 +62,10 @@ angular.module('starter.controllers', [])
   }
     
   $scope.onSuccess = function(position) {
-   $scope.currentLatitude = position.coords.latitude;
-     $scope.currentLongitude = position.coords.longitude;
-     $scope.getDistance();
-   }
+    $scope.currentLatitude = position.coords.latitude;
+    $scope.currentLongitude = position.coords.longitude;
+    $scope.getDistance();
+  }
    
   $scope.onError = function(error) {
     alert('code: '    + error.code    + '\n' +
@@ -98,7 +94,7 @@ angular.module('starter.controllers', [])
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var distance = R * c;
     
-    if(distance < $scope.alarmData.ratio){
+    if(distance < $scope.formData.ratio){
       alert("cercaaaa!");
       //navigator.notification.vibrate(2500);
       //navigator.notification.beep(2);
@@ -107,22 +103,4 @@ angular.module('starter.controllers', [])
       //navigator.notification.vibrate(2500);
     }
   }
-  
-  if (navigator.notification) { // Override default HTML alert with native dialog
-    window.alert = function (message) {
-      navigator.notification.alert(
-          message,    // message
-          null,       // callback
-          "Workshop", // title
-          'OK'        // buttonName
-      );
-    };
-  }
-})
-
-.controller('AlarmlistCtrl', function($scope) {
-  $scope.alarmlist = [
-    { title: 'Trabajo', id: 1 },
-    { title: 'Tren', id: 2 }
-  ];
 })

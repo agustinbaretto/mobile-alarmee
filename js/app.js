@@ -42,30 +42,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       controller: 'AppCtrl'
     })
 
-    .state('app.alarm', {
-      url: "/alarm",
+    .state('app.alarms', {
+      url: "/alarms",
       views: {
         'menuContent' :{
-          templateUrl: "templates/alarm.html",
+          templateUrl: "templates/alarms.html",
           controller: 'AlarmsCtrl'
-        }
-      }
-    })
-
-    .state('app.browse', {
-      url: "/browse",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/browse.html"
-        }
-      }
-    })
-    .state('app.alarmlist', {
-      url: "/alarmlist",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/alarmlist.html",
-          controller: 'AlarmlistCtrl'
         }
       }
     })
@@ -75,11 +57,21 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/alarm.html",
-          controller: 'AlarmCtrl'
+          controller: 'AlarmsCtrl'
+        }
+      }
+    })
+    
+    .state('app.alarm', {
+      url: "/alarms/new",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/alarm.html",
+          controller: 'AlarmsCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/alarm');
+  $urlRouterProvider.otherwise('/app/alarms');
 });
 
