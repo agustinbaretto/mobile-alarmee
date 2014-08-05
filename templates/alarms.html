@@ -7,8 +7,9 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="alarm in alarms" href="#/app/alarms/{{alarm.id}}">
+      <ion-item ng-repeat="alarm in alarms" href="#/app/alarms/{{alarm.id}}" class=" item-icon-right">
         {{alarm.title}}
+        <i class="icon ion-ios7-close-empty"></i>
       </ion-item>
     </ion-list>
   </ion-content>
