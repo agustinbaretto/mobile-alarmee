@@ -6,9 +6,9 @@
     <div class="card">
       <div class="item item-text-wrap">
         <p>
-          Quiero que mi alarma suene a <b>{{formData.ratio}} kilometros</b>
+          Quiero que mi alarma suene a <b>{{alarm.ratio}} kilometros</b>
           <div class="range range-positive">
-            <input type="range" min="1" max="9" value="5" name="ratio" ng-model="formData.ratio">
+            <input type="range" min="1" max="9" value="5" name="ratio" ng-model="alarm.ratio">
           </div>
         </p>
         <p>
@@ -16,9 +16,11 @@
         </p>
         <div class="list list-inset">
           <label class="item item-input padding">
-            <input type="text" placeholder="Direccion" ng-model="formData.targetAddress" required>
+            <i class="icon ion-location placeholder-icon"></i>
+            <input type="text" placeholder="Direccion" ng-model="alarm.targetAddress" required>
           </label>
         </div>
+        <span ng-click="confirmAddress()" style="font-size:small" class="assertive"><b>esta no es la direccion que busco</b></span>
       </div>
     </div>
     

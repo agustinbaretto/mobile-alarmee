@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.single', {
+    .state('app.alarm', {
       url: "/alarms/:alarmId",
       views: {
         'menuContent' :{
@@ -62,8 +62,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
     
-    .state('app.alarm', {
-      url: "/alarms/new",
+    .state('app.add', {
+      url: "/alarms/add",
       views: {
         'menuContent' :{
           templateUrl: "templates/alarm.html",

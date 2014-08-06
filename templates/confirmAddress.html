@@ -1,0 +1,17 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">Confirmar direccion</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeConfirmAddress()">Cerrar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+      <div class="list">
+        <a ng-repeat="result in results" class="item item-icon-left" href="#">
+          <i class="icon ion-location"></i>
+          {{result.formatted_address.substring(0, 100)}}
+        </a>
+      </div>
+  </ion-content>
+</div>
+
