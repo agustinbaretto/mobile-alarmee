@@ -33,10 +33,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AlarmsCtrl', function($scope, $ionicModal, $ionicPlatform, $stateParams, alarmsService) {
-  $scope.alarms = [];
-  $scope.alarm = {};
-  $scope.alarm.ratio = 5;
+.controller('AlarmsCtrl', function($scope, $state, alarmsService) {
+  $scope.alarms = alarmsService.getAlarms();
+
+  $scope.removeAlarm = function(id) {
+    $scope.alarms = alarmsService.removeAlarm(id);
+  };
+  
+  $scope.addAlarm = function() {
+    var id = alarmsService.addAlarm();
+    $state.go("app.alarm", {'alarmId':id});
+  }
+})
+
+.controller('AlarmCtrl', function($scope, $ionicModal, $ionicPlatform, $state, $stateParams, alarmsService) {
+  $scope.alarms = alarmsService.getAlarms();
+  $scope.alarm = _.find($scope.alarms, function(al){ return al.id == $stateParams.alarmId; });
   $scope.geocoder = new google.maps.Geocoder();
   $scope.results = [];
   $scope.currentLatitude = "";
@@ -48,11 +60,7 @@ angular.module('starter.controllers', [])
   $scope.removeAlarm = function(id) {
     $scope.alarms = alarmsService.removeAlarm(id);
   };
-  
-  $scope.addAlarm = function() {
-    $scope.alarms.push($scope.alarm);
-  };
-  
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/confirmAddress.html', {
     scope: $scope
@@ -71,19 +79,27 @@ angular.module('starter.controllers', [])
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doConfirmAddress = function() {
-    console.log('Doing login', $scope.loginData);
+  $scope.doConfirmAddress = function(index) {
+    $scope.alarm.targetLatitude = $scope.results[index].geometry.location.lat();        
+    $scope.alarm.targetLongitude = $scope.results[index].geometry.location.lng();
+    $scope.alarm.targetAddress = $scope.results[index].formatted_address.substring(0, 100);
+    $scope.getCurrentPosition();
+    $scope.modal.hide();
   };
 
   $scope.getTargetPosition = function() {
     $scope.geocoder.geocode( {'address': $scope.alarm.targetAddress, 'region': 'ar'}, function(results, status) {
       $scope.$apply(function(){
         if (status == google.maps.GeocoderStatus.OK) {
-          $scope.results = results;
-          //$scope.alarm.targetLatitude = results[0].geometry.location.lat();        
-          //$scope.alarm.targetLongitude = results[0].geometry.location.lng();
-          //$scope.alarm.targetAddress = results[0].formatted_address.substring(0, 100);
-          //$scope.getCurrentPosition();
+          if(results.length > 0){
+            if(results.length > 1){
+              $scope.results = results;
+            }
+            $scope.alarm.targetLatitude = results[0].geometry.location.lat();        
+            $scope.alarm.targetLongitude = results[0].geometry.location.lng();
+            $scope.alarm.targetAddress = results[0].formatted_address.substring(0, 100);
+            $scope.getCurrentPosition();
+          }
         } else {
      	   alert('Geocode was not successful for the following reason: ' + status);
         }
@@ -133,6 +149,4 @@ angular.module('starter.controllers', [])
       //navigator.notification.vibrate(2500);
     }
   }
-  
-  $scope.alarms = alarmsService.getAlarms();
 })

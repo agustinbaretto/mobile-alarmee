@@ -16,6 +16,23 @@ function onBackKeyDown(e) {
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
+.filter('alarmTitle', function() {
+  return function(input) {
+    input = input || '';
+    var ar = input.split(",");
+    return ar[0];
+  };
+})
+  
+.filter('alarmSubtitle', function() {
+  return function(input) {
+    input = input || '';
+    var arr = input.split(",");
+    arr.splice(0,1);
+    return arr.join(",");
+  };
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     //https://github.com/ftlabs/fastclick
@@ -57,21 +74,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent' :{
           templateUrl: "templates/alarm.html",
-          controller: 'AlarmsCtrl'
-        }
-      }
-    })
-    
-    .state('app.add', {
-      url: "/alarms/add",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/alarm.html",
-          controller: 'AlarmsCtrl'
+          controller: 'AlarmCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/alarms');
+  $urlRouterProvider.otherwise('/app');
 });
 

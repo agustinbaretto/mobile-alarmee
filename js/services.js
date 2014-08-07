@@ -1,4 +1,4 @@
-angular.module('starter').service("alarmsService", [function() {
+angular.module('starter').service("alarmsService", function() {
     this.alarms = [
             {
                 id: 1,
@@ -19,7 +19,7 @@ angular.module('starter').service("alarmsService", [function() {
             {
                 id: 3,
                 title: "Futbol",
-                targetAddress: "Charcas 2332 Buenos Aires",
+                targetAddress: "Charcas 2332, Buenos Aires",
                 targetLatitude: "",
                 targetLongitude: "",
                 ratio: 2
@@ -32,4 +32,10 @@ angular.module('starter').service("alarmsService", [function() {
 	this.removeAlarm = function(id) {
         return _.reject(this.alarms, function(alarm){ return alarm.id == id; });
     };
-}]);
+    
+    this.addAlarm = function() {
+        var id = _.max(this.alarms, function(al){ return al.id; }).id + 1;
+        this.alarms.push({"alarm":{'id':id}});
+        return id;
+    };
+});

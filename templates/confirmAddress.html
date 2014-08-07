@@ -7,7 +7,7 @@
   </ion-header-bar>
   <ion-content>
       <div class="list">
-        <a ng-repeat="result in results" class="item item-icon-left" href="#">
+        <a ng-repeat="result in results" class="item item-icon-left" href="#" ng-click="doConfirmAddress({{$index}})">
           <i class="icon ion-location"></i>
           {{result.formatted_address.substring(0, 100)}}
         </a>
